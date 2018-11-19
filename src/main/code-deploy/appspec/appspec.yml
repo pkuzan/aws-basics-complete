@@ -1,0 +1,17 @@
+version: 0.0
+os: linux
+files:
+  - source: /lib
+    destination: /opt/aws-basics
+hooks:
+  BeforeInstall:
+    - location: scripts/stop_server.sh
+      timeout: 120
+      runas: root
+    - location: scripts/clean_up.sh
+      timeout: 120
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_server.sh
+      timeout: 120
+      runas: root
